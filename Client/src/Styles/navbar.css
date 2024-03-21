@@ -1,0 +1,21 @@
+.navbar {
+  background-color: rgb(93, 93, 243);
+  padding: 1.5vw;
+}
+.nav {
+  display: flex;
+  list-style: none;
+  gap: 2vw;
+}
+.link {
+  text-decoration: none;
+  color: whitesmoke;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1.5vw;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.link:hover {
+  color: rgb(202, 202, 202);
+  text-transform: uppercase;
+}
