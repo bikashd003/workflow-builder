@@ -8,6 +8,7 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import Sidebar from "./Sidebar";
 import "./workflow.css";
+import axios from "axios";
 
 const initialNodes = [
   {
@@ -61,17 +62,11 @@ const WorkflowEditor = () => {
     },
     [reactFlowInstance]
   );
-  const onSave = useCallback(() => {
-    localStorage.setItem("workflow", JSON.stringify({ nodes, edges }));
-  }, [nodes, edges]);
+  const onSave = async () => {
+    await axios.post("http://localhost:3000/save-workflow", { nodes, edges 
+    }).then((res)=>console.log(res)).catch((err)=>console.log(err));
+  };
 
-  const onLoad = useCallback(() => {
-    const workflow = JSON.parse(localStorage.getItem("workflow"));
-    if (workflow) {
-      setNodes(workflow.nodes);
-      setEdges(workflow.edges);
-    }
-  }, []);
   return (
     <div className="dndflow">
       <ReactFlowProvider>
@@ -90,9 +85,6 @@ const WorkflowEditor = () => {
           ></ReactFlow>
           <button onClick={onSave} className="btn">
             Save
-          </button>
-          <button onClick={onLoad} className="btn">
-            Load
           </button>
         </div>
         <Sidebar />
