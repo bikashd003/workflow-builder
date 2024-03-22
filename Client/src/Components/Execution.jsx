@@ -64,7 +64,7 @@ const Execution = () => {
   );
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-container">
         <label>
           Select Workflow:
           <select value={selectedWorkflow} onChange={handleWorkflowChange}>
@@ -80,7 +80,7 @@ const Execution = () => {
           Upload File:
           <input type="file" onChange={handleFileChange} name="file"/>
         </label>
-        <button type="submit">Execute Workflow</button>
+        <button type="submit" className="exe-btn">Execute Workflow</button>
       </form>
       <div className="dndflow">
         <ReactFlowProvider>
