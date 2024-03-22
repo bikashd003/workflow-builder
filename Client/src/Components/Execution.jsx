@@ -78,7 +78,7 @@ const Execution = () => {
         </label>
         <label>
           Upload File:
-          <input type="file" onChange={handleFileChange} />
+          <input type="file" onChange={handleFileChange} name="file"/>
         </label>
         <button type="submit">Execute Workflow</button>
       </form>

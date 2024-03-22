@@ -10,21 +10,12 @@ import Sidebar from "./Sidebar";
 import "./workflow.css";
 import axios from "axios";
 
-const initialNodes = [
-  {
-    id: "1",
-    type: "input",
-    data: { label: "input node" },
-    position: { x: 250, y: 5 },
-  },
-];
-
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const WorkflowEditor = () => {
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
@@ -55,7 +46,7 @@ const WorkflowEditor = () => {
         id: getId(),
         type,
         position,
-        data: { label: `${type} node` },
+        data: { label: `${type} node`, column: "" },
       };
 
       setNodes((nds) => nds.concat(newNode));
@@ -63,8 +54,11 @@ const WorkflowEditor = () => {
     [reactFlowInstance]
   );
   const onSave = async () => {
-    await axios.post("http://localhost:3000/save-workflow", { nodes, edges 
-    }).then((res)=>console.log(res)).catch((err)=>console.log(err));
+    console.log(nodes,edges)
+    await axios
+      .post("http://localhost:3000/save-workflow", { nodes, edges })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
